@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+
+<body>
+
+<h2>Products</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Cost
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${products.isEmpty()}">
+        <td colspan="2"> No Products Available </td>
+    </tr>
+    <tr th:each="product : ${products}">
+        <td><a th:href="@{/products/{id}(id = ${product.getId()})}" th:text="${product.getName()}">product</a></td>
+        <td><span th:text="${product.getCost()}"> cost </span></td>
+    </tr>
+
+    </tbody>
+</table>
+
+<div>
+    <a th:href="@{/products/new}">New</a>
+</div>
+
+</body>
+</html>
